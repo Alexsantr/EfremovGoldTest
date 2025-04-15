@@ -1,39 +1,22 @@
 package config;
 
-import org.aeonbits.owner.Config;
+import com.codeborne.selenide.Configuration;
 
-@Config.Sources({
-        "classpath:${env}.properties",
-        "system:properties",
-        "system:env"
-})
+public class WebDriverConfig {
+    private final DataConfig dataConfig;
 
-public interface WebDriverConfig extends Config {
+    public WebDriverConfig(DataConfig dataConfig) {
+        this.dataConfig = dataConfig;
+    }
 
-    @Key("browserName")
-    @DefaultValue("CHROME")
-    String getBrowserName();
-
-    @Key("browserVersion")
-    @DefaultValue("100.0")
-    String getBrowserVersion();
-
-    @Key("baseUrl")
-    @DefaultValue("https://efremov.gold/")
-    String getBaseUrl();
-
-    @Key("loadStrategy")
-    @DefaultValue("eager")
-    String getLoadStrategy();
-
-    @Key("browserSize")
-    @DefaultValue("1920x1080")
-    String getBrowserSize();
-
-    @Key("isRemote")
-    @DefaultValue("false")
-    Boolean isRemote();
-
-    @Key("remoteUrl")
-    String getRemoteUrl();
+    public void dataConfig() {
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = dataConfig.getBaseUrl();
+        Configuration.browser = dataConfig.getBrowser();
+        Configuration.browserSize = dataConfig.getBrowserSize();
+        Configuration.browserVersion = dataConfig.getBrowserVersion();
+        if (dataConfig.remote()) {
+            Configuration.remote = dataConfig.remoteUrl();
+        }
+    }
 }

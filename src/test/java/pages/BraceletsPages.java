@@ -8,18 +8,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class BraceletsPages {
-
-    private static final String BASE_URL = "/catalog/braslet";
+    SubscriptionPages subscriptionPages = new SubscriptionPages();
 
 
     @Step("Открытие страницы")
     public BraceletsPages openPage() {
 
-        open("" + BASE_URL);
+        open("/catalog/braslet");
+        subscriptionPages.closeSubscriptionPopupIfPresent();
+
         return this;
     }
 
-    @Step("Проверка заголока страницы Браслеты")
+    @Step("Проверка заголовка страницы Браслеты")
     public BraceletsPages checkTittlePage() {
 
         $("[  class=\"catalog-header__title\"]").shouldHave(text("Браслеты"));

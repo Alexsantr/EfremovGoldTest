@@ -18,15 +18,9 @@ public class CatalogSteps {
 
     @Step("Получить список продуктов для сравнения")
     public List<ProductResponseModel> getProductsForComparison(int productId) {
-        Response response = given(requestSpec)
-                .when()
-                .get(COMPARE_ENDPOINT + "?ids=" + productId);
+        Response response = given(requestSpec).when().get(COMPARE_ENDPOINT + "?ids=" + productId);
 
-        return Arrays.asList(response
-                .then()
-                .statusCode(200)
-                .extract()
-                .as(ProductResponseModel[].class));
+        return Arrays.asList(response.then().statusCode(200).extract().as(ProductResponseModel[].class));
     }
 
     @Step("Получить первый продукт из списка сравнения")

@@ -8,11 +8,12 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPages {
-
+    SubscriptionPages subscriptionPages =new SubscriptionPages();
 
     @Step("Открыть главную страницу Efremov")
     public MainPages openMainPage() {
         open("");
+        subscriptionPages.closeSubscriptionPopupIfPresent();
         return this;
     }
 
@@ -29,9 +30,7 @@ public class MainPages {
                 "Все товары", "Кольца", "Серьги", "Подвески", "Броши",
                 "Браслеты", "Кресты", "Колье", "Аксессуары"
         );
-        expectedSections.forEach(section -> {
-            $$(".menu-popup__item").findBy(text(section)).shouldBe(visible);
-        });
+        expectedSections.forEach(section -> $$(".menu-popup__item").findBy(text(section)).shouldBe(visible));
         return this;
     }
 

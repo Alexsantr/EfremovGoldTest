@@ -2,38 +2,82 @@ package api.steps;
 
 import api.models.BasketRequestModel;
 import api.models.BasketResponseModel;
+import api.models.RemoveFromBasketRequest;
 import io.qameta.allure.Step;
-import io.restassured.response.Response;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import static api.spec.EfremovGoldSpec.requestSpec;
+import static api.spec.EfremovGoldSpec.statusCode200Spec;
 import static io.restassured.RestAssured.given;
 
 public class BasketSteps {
-    private static final String BASE_URL = "https://efremov.gold";
-    private static final String BASKET_ENDPOINT = "/api/basket/v1/products";
+    @Step("Добавить товар в корзину")
+    public RemoveFromBasketRequest addProductToCartRequest(String cartToken, int productId, int quantity) {
 
-    @Step("Добавить товары в корзину")
-    public BasketResponseModel addToBasket(String basketToken, List<BasketRequestModel.BasketGroup> groups) {
-        BasketRequestModel request = new BasketRequestModel();
-        request.setBasket(basketToken);
-        request.setGroups(groups);
-        request.setChange(true);
+        BasketRequestModel.BasketGroup group = new BasketRequestModel.BasketGroup();
+        group.setId(productId);
+        group.setCount(quantity);
 
-        Response response = given()
-                .baseUri(BASE_URL)
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .header("Currency-Id", "1")
-                .header("Site-Id", "1")
-                .cookie("cart_token_efremov-gold", basketToken)
-                .body(request)
-                .when()
-                .post(BASKET_ENDPOINT);
 
-        return response.then()
-                .statusCode(200)
-                .extract()
-                .as(BasketResponseModel.class);
+        BasketRequestModel requestBody = new BasketRequestModel();
+        requestBody.setBasket(cartToken);
+        requestBody.setGroups(List.of(group));
+        requestBody.setChange(true);
+
+        BasketResponseModel responseModel = given(requestSpec).body(requestBody).when().post("api/basket/v1/products").then().extract().as(BasketResponseModel.class);
+
+        RemoveFromBasketRequest removeFromBasketRequest = new RemoveFromBasketRequest();
+        removeFromBasketRequest.setBasket(cartToken);
+        removeFromBasketRequest.setGroupIds(Collections.singletonList(responseModel.getData().get(0).getProducts().get(0).getGroups().get(0).getId()));
+        removeFromBasketRequest.setNotInStock(false);
+
+        return removeFromBasketRequest;
+    }
+
+    @Step("Добавить товар в корзину")
+    public BasketResponseModel addProductToCart(String cartToken, int productId, int quantity) {
+        BasketRequestModel.BasketGroup group = new BasketRequestModel.BasketGroup();
+        group.setId(productId);
+        group.setCount(quantity);
+        BasketRequestModel requestBody = new BasketRequestModel();
+        requestBody.setBasket(cartToken);
+        requestBody.setGroups(Collections.singletonList(group));
+        requestBody.setChange(true);
+
+        return given(requestSpec).body(requestBody).when().post("/api/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
+
+
+    }
+
+
+    @Step("Удалить товары из корзины")
+    public BasketResponseModel removeProductsFromCart(RemoveFromBasketRequest removeFromBasketRequest) {
+        return given(requestSpec).body(removeFromBasketRequest).when().delete("api/basket/v1/products").then().extract().as(BasketResponseModel.class);
+
+    }
+
+
+    @Step("Добавить несколько товаров в корзину")
+    public BasketResponseModel addMultipleProductsToCart(String cartToken, Map<Integer, Integer> products) {
+        // Создаем список групп товаров
+        List<BasketRequestModel.BasketGroup> groups = products.entrySet().stream().map(entry -> {
+            BasketRequestModel.BasketGroup group = new BasketRequestModel.BasketGroup();
+            group.setId(entry.getKey());
+            group.setCount(entry.getValue());
+            return group;
+        }).collect(Collectors.toList());
+
+        // Формируем тело запроса
+        BasketRequestModel requestBody = new BasketRequestModel();
+        requestBody.setBasket(cartToken);
+        requestBody.setGroups(groups);
+        requestBody.setChange(true);
+
+        // Отправляем запрос и возвращаем ответ
+        return given(requestSpec).body(requestBody).when().post("/api/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
     }
 }
