@@ -2,7 +2,11 @@ package config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:web.properties", "classpath:web.properties"})
+@Config.Sources({
+        "classpath:${env}.properties",
+        "system:properties",
+        "system:env"
+})
 public interface DataConfig extends Config {
 
     @Key("browser")
@@ -21,10 +25,9 @@ public interface DataConfig extends Config {
     @DefaultValue("https://efremov.gold/")
     String getBaseUrl();
 
-
-    @Key("remote")
+    @Key("isRemote")
     @DefaultValue("false")
-    boolean remote();
+    boolean isRemote();
 
     @Key("remoteUrl")
     String remoteUrl();
