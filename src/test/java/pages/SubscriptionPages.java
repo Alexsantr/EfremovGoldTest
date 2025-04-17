@@ -14,7 +14,7 @@ public class SubscriptionPages  {
         SelenideElement popup = $("#normal-slidedown");
         SelenideElement closeButton = $("#onesignal-slidedown-cancel-button");
         try {
-            popup.should(Condition.appear, Duration.ofSeconds(12));
+            popup.should(Condition.appear, Duration.ofSeconds(15));
             Selenide.sleep(200);
             closeButton.click();
             popup.should(Condition.disappear);
