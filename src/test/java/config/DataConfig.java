@@ -26,7 +26,6 @@ public interface DataConfig extends Config {
     String getBaseUrl();
 
     @Key("isRemote")
-    @DefaultValue("false")
     boolean isRemote();
 
     @Key("remoteUrl")
