@@ -5,10 +5,6 @@ import org.aeonbits.owner.Config;
 @Config.Sources({"classpath:web.properties", "classpath:web.properties"})
 public interface DataConfig extends Config {
 
-    @Key("baseUrl")
-    @DefaultValue("https://efremov.gold/")
-    String getBaseUrl();
-
     @Key("browser")
     @DefaultValue("CHROME")
     String getBrowser();
@@ -20,6 +16,11 @@ public interface DataConfig extends Config {
     @Key("browserVersion")
     @DefaultValue("127.0")
     String getBrowserVersion();
+
+    @Key("baseUrl")
+    @DefaultValue("https://efremov.gold/")
+    String getBaseUrl();
+
 
     @Key("remote")
     @DefaultValue("false")
