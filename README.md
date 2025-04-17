@@ -73,14 +73,14 @@
 
 ## 🌟 Пример Allure-отчета:
 
-[Jenkins](https://jenkins.autotests.cloud/job/EfremovGoldTest/)
-![This is an image](/icons/dj.png)
-
-## 🌟 Пример Allure-отчета:
-
 [Allure-отчет](https://jenkins.autotests.cloud/job/EfremovGoldTest/23/allure/#)
 
 ![This is an image](/icons/allure.png)
+
+## 🌟 Запуск тестов Jenkins:
+
+[Jenkins](https://jenkins.autotests.cloud/job/EfremovGoldTest/)
+![This is an image](/icons/dj.png)
 
 ## 🌟 Интеграция с Allure TestOps
 
