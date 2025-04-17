@@ -5,7 +5,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import pages.RingsPages;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Tag("UI Tests")
 @DisplayName("Каталог колец")
 public class RingsTests extends TestBase {
     RingsPages ringsPages = new RingsPages();
@@ -19,7 +19,6 @@ public class RingsTests extends TestBase {
     }
 
     @Test
-    @Order(1)
     @Story("Проверка страницы каталога")
     @DisplayName("Проверка отображения заголовка страницы каталога колец")
     void checkaMainPageTitle() {
@@ -43,15 +42,15 @@ public class RingsTests extends TestBase {
     }
 
     @Test
-    @Story("Функциональность добаления товара в корзину")
+    @Story("Функциональность добавления товара в корзину")
     @DisplayName("Проверка добавления товара в корзину")
     void addProduct() {
         ringsPages.openPage().addProduct();
     }
 
     @Test
-    @Story("Функциональность добаления товара в корзину")
-    @DisplayName("Проверка добавления товара в корзину")
+    @Story("Функциональность удаление товара из корзину")
+    @DisplayName("Проверка удаление товара из корзину")
     void deleteProductInBasket() {
         ringsPages.openPage().addProduct().deleteProductInBasket();
     }

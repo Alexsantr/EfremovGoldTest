@@ -10,6 +10,7 @@ import api.steps.CartTokenStep;
 import api.steps.CatalogSteps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@Tag("API Tests")
 @DisplayName("API тесты для интернет-магазина Efremov Gold")
 public class EfremovGoldApiTests extends TestBaseApi {
 
@@ -43,7 +45,7 @@ public class EfremovGoldApiTests extends TestBaseApi {
     }
 
     @Test
-    @DisplayName("Проверка данных продукта")
+    @DisplayName("Проверка данных списка товара 'колец' ")
     void checkProductData() {
         ProductResponseModel product = catalogSteps.getFirstComparedProduct(TEST_PRODUCT_ID);
 

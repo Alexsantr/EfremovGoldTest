@@ -15,7 +15,7 @@ import static api.spec.EfremovGoldSpec.statusCode200Spec;
 import static io.restassured.RestAssured.given;
 
 public class BasketSteps {
-    @Step("Добавить товар в корзину")
+    @Step("Добавить товар в корзину для дальнейшего удаления")
     public RemoveFromBasketRequest addProductToCartRequest(String cartToken, int productId, int quantity) {
 
         BasketRequestModel.BasketGroup group = new BasketRequestModel.BasketGroup();
@@ -63,7 +63,7 @@ public class BasketSteps {
 
     @Step("Добавить несколько товаров в корзину")
     public BasketResponseModel addMultipleProductsToCart(String cartToken, Map<Integer, Integer> products) {
-        // Создаем список групп товаров
+
         List<BasketRequestModel.BasketGroup> groups = products.entrySet().stream().map(entry -> {
             BasketRequestModel.BasketGroup group = new BasketRequestModel.BasketGroup();
             group.setId(entry.getKey());
@@ -71,13 +71,11 @@ public class BasketSteps {
             return group;
         }).collect(Collectors.toList());
 
-        // Формируем тело запроса
         BasketRequestModel requestBody = new BasketRequestModel();
         requestBody.setBasket(cartToken);
         requestBody.setGroups(groups);
         requestBody.setChange(true);
 
-        // Отправляем запрос и возвращаем ответ
         return given(requestSpec).body(requestBody).when().post("/api/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
     }
 }

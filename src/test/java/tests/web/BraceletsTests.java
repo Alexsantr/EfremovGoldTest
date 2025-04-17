@@ -32,7 +32,7 @@ public class BraceletsTests extends TestBase {
 
     @Test
     @Story("Навигация")
-    @DisplayName("Проверка работы фильтра ")
+    @DisplayName("Проверка работы фильтра")
     void checkFiltersPage() {
 
         braceletsPages.openPage().checkFiltersPage();

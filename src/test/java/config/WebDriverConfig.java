@@ -10,21 +10,19 @@ public class WebDriverConfig {
     private final DataConfig configData = ConfigFactory.create(DataConfig.class, System.getProperties());
 
     public void configParams() {
-        // Общие настройки
+
         Configuration.pageLoadStrategy = "eager";
 
-        // Определяем режим работы
+
         boolean isRemote = configData.remote() ||
                 Boolean.parseBoolean(System.getProperty("isRemote", "false")) ||
                 "remote".equals(System.getProperty("env", ""));
 
-        // Базовые настройки
         Configuration.baseUrl = resolveBaseUrl();
         Configuration.browser = resolveBrowser();
         Configuration.browserSize = resolveBrowserSize();
         Configuration.browserVersion = resolveBrowserVersion();
 
-        // Настройки для удаленного режима
         if (isRemote) {
             configureRemote();
         }

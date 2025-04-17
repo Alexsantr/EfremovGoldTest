@@ -2,10 +2,11 @@ package tests.web;
 
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.MainPages;
 
-
+@Tag("UI Tests")
 @DisplayName("Главная страница")
 public class MainTests extends TestBase {
 
@@ -27,7 +28,7 @@ public class MainTests extends TestBase {
 
     @Test
     @Story("Блок новинок")
-    @DisplayName("Проверка отображения и заголовка блока новинок")
+    @DisplayName("Проверка текста блока новинок")
     void checkNewProduct() {
         mainPages.openMainPage().checkNewProduct();
     }

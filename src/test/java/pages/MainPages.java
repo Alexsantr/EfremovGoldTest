@@ -45,7 +45,7 @@ public class MainPages {
         return this;
     }
 
-    @Step("Проверка отображения иконок у спец разделов")
+    @Step("Проверка отображения иконок у спец разделов в каталоге")
     public MainPages specialSectionsShouldHaveIcons() {
 
         $(".garniture").shouldBe(visible);
