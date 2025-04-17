@@ -1,6 +1,6 @@
 package tests.web;
 
-import com.codeborne.selenide.Configuration;
+
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.WebDriverConfig;
@@ -17,7 +17,7 @@ public class TestBase {
     public static void beforeAll() {
         WebDriverConfig webDriverConfig = new WebDriverConfig();
         webDriverConfig.configParams();
-        Configuration.timeout = 10000;
+
     }
 
 

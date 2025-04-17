@@ -11,6 +11,7 @@ public class WebDriverConfig {
     private final DataConfig configData = ConfigFactory.create(DataConfig.class, System.getProperties());
 
     public void configParams() {
+        Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = configData.getBaseUrl();
         Configuration.browser = configData.getBrowser();
         Configuration.browserVersion = configData.getBrowserVersion();
