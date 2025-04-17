@@ -16,7 +16,7 @@ public class WebDriverConfig {
 
         boolean isRemote = configData.remote() ||
                 Boolean.parseBoolean(System.getProperty("isRemote", "false")) ||
-                "remote".equals(System.getProperty("env", ""));
+                "remote".equals(System.getProperty("env"));
 
         Configuration.baseUrl = resolveBaseUrl();
         Configuration.browser = resolveBrowser();
@@ -33,11 +33,11 @@ public class WebDriverConfig {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
-                "enableVideo", true,
-                "enableLog", true
+                "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
     }
+
 
     private String resolveBaseUrl() {
         return System.getProperty("baseUrl", configData.getBaseUrl());
