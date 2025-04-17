@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static api.spec.EfremovGoldSpec.requestSpec;
-import static api.spec.EfremovGoldSpec.statusCode200Spec;
+import static api.spec.BaseSpec.requestSpec;
+import static api.spec.BaseSpec.statusCode200Spec;
 import static io.restassured.RestAssured.given;
 
 public class BasketSteps {

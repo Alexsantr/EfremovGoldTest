@@ -5,8 +5,8 @@ import api.models.AuthRequestModel;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 
-import static api.spec.EfremovGoldSpec.requestSpec;
-import static api.spec.EfremovGoldSpec.statusCode404Spec;
+import static api.spec.BaseSpec.requestSpec;
+import static api.spec.BaseSpec.statusCode404Spec;
 import static io.restassured.RestAssured.given;
 
 

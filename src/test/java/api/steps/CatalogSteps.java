@@ -8,7 +8,7 @@ import io.restassured.response.Response;
 import java.util.Arrays;
 import java.util.List;
 
-import static api.spec.EfremovGoldSpec.requestSpec;
+import static api.spec.BaseSpec.requestSpec;
 import static io.restassured.RestAssured.given;
 
 public class CatalogSteps {

@@ -2,8 +2,9 @@ package api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+
 import java.util.List;
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 @Data
 public class BasketResponseModel {
     public List<BasketItem> data;
@@ -16,6 +17,7 @@ public class BasketResponseModel {
         public List<Product> products;
         public List<Object> constructorSets; // Замените Object на конкретный тип, если известна структура
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Product {
@@ -36,12 +38,14 @@ public class BasketResponseModel {
         private List<ProductParam> productParams;
         private SeoPage seoPage;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Image {
         private int fileId;
         private int sort;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Option {
@@ -51,6 +55,7 @@ public class BasketResponseModel {
         private int sort;
         private List<OptionValue> values;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class OptionValue {
@@ -59,6 +64,7 @@ public class BasketResponseModel {
         private String code;
         private int sort;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Category {
@@ -70,11 +76,13 @@ public class BasketResponseModel {
         private Integer mainPageImageId;
         private CategoryParams params;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class CategoryParams {
         private boolean useMainPageImage;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class CardPrice {
@@ -86,6 +94,7 @@ public class BasketResponseModel {
         private double promoPercent;
         private double setDiscountPercent;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Group {
@@ -95,6 +104,7 @@ public class BasketResponseModel {
         public List<Offer> offers;
         public int count;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Offer {
@@ -114,6 +124,7 @@ public class BasketResponseModel {
         private int remnants;
         private int count;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class ProductParam {
@@ -122,6 +133,7 @@ public class BasketResponseModel {
         private int sort;
         private String title;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class SeoPage {
@@ -138,6 +150,7 @@ public class BasketResponseModel {
         private AdditionalFields additionalFields;
         private SeoPageConfig config;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class SeoPageParams {
@@ -146,6 +159,7 @@ public class BasketResponseModel {
         private Object stickerIds; // Замените Object на конкретный тип, если известна структура
         private boolean hasFilters;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class SeoText {
@@ -157,17 +171,20 @@ public class BasketResponseModel {
         private Object seoPageId; // Замените Object на конкретный тип, если известна структура
         private Object siteId; // Замените Object на конкретный тип, если известна структура
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class AdditionalFields {
         private String categoryTitle;
         private String seodescr;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class SeoPageConfig {
         private boolean replaceDescription;
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class TotalInfo {
