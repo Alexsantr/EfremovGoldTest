@@ -80,6 +80,7 @@
 ## 🌟 Запуск тестов Jenkins:
 
 [Jenkins](https://jenkins.autotests.cloud/job/EfremovGoldTest/)
+
 ![This is an image](/icons/dj.png)
 
 ## 🌟 Интеграция с Allure TestOps
