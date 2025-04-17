@@ -4,8 +4,9 @@ import org.aeonbits.owner.Config;
 
 import static com.codeborne.selenide.Browsers.CHROME;
 
-@Config.Sources({"classpath:local.properties", "classpath:web.properties"})
+@Config.Sources({"classpath:web.properties", "classpath:web.properties"})
 public interface DataConfig extends Config {
+
     @Key("baseUrl")
     @DefaultValue("https://efremov.gold/")
     String getBaseUrl();
@@ -27,6 +28,5 @@ public interface DataConfig extends Config {
     boolean remote();
 
     @Key("remoteUrl")
-    @DefaultValue("https://efremov.gold/")
     String remoteUrl();
 }
