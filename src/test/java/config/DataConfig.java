@@ -10,11 +10,11 @@ public interface DataConfig extends Config {
     String getBaseUrl();
 
     @Key("browser")
-    @DefaultValue("Chrome")
+    @DefaultValue("CHROME")
     String getBrowser();
 
     @Key("browserSize")
-    @DefaultValue("1220x1080")
+    @DefaultValue("1920x1080")
     String getBrowserSize();
 
     @Key("browserVersion")
