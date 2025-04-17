@@ -1,6 +1,9 @@
 package config;
 
 import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 public class WebDriverConfig {
     private final DataConfig dataConfig;
@@ -17,6 +20,12 @@ public class WebDriverConfig {
         Configuration.browserVersion = dataConfig.getBrowserVersion();
         if (dataConfig.remote()) {
             Configuration.remote = dataConfig.remoteUrl();
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            Configuration.browserCapabilities = capabilities;
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
         }
     }
 }

@@ -27,14 +27,6 @@ public class TestBase {
         webDriverConfig.dataConfig();
         Configuration.timeout = 10000;
         Configuration.holdBrowserOpen = false;
-        SubscriptionPages subscriptionPages = new SubscriptionPages();
-        subscriptionPages.closeSubscriptionPopupIfPresent();
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-        Configuration.browserCapabilities = capabilities;
 
     }
 

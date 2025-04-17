@@ -19,7 +19,7 @@ public interface DataConfig extends Config {
     String getBrowserSize();
 
     @Key("browserVersion")
-    @DefaultValue("125")
+    @DefaultValue("127")
     String getBrowserVersion();
 
     @Key("remote")
