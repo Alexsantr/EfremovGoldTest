@@ -5,7 +5,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import pages.RingsPages;
 
-@Tag("UI Tests")
+@Tag("UI_Tests")
 @DisplayName("Каталог колец")
 public class RingsTests extends TestBase {
     RingsPages ringsPages = new RingsPages();

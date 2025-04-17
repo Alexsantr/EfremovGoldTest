@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@Tag("API Tests")
+@Tag("API_Tests")
 @DisplayName("API тесты для интернет-магазина Efremov Gold")
 public class EfremovGoldApiTests extends TestBaseApi {
 

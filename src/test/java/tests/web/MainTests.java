@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.MainPages;
 
-@Tag("UI Tests")
+@Tag("UI_Tests")
 @DisplayName("Главная страница")
 public class MainTests extends TestBase {
 
