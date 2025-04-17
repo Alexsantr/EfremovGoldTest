@@ -9,49 +9,45 @@ import java.util.Map;
 public class WebDriverConfig {
     private final DataConfig configData = ConfigFactory.create(DataConfig.class, System.getProperties());
 
+
     public void configParams() {
+        boolean isRemote = Boolean.parseBoolean(System.getProperty("isRemote", "false"));
+        String environment = System.getProperty("env");
 
         Configuration.pageLoadStrategy = "eager";
-
-
-        boolean isRemote = configData.remote() ||
-                Boolean.parseBoolean(System.getProperty("isRemote", "false")) ||
-                "remote".equals(System.getProperty("env"));
-
-        Configuration.baseUrl = resolveBaseUrl();
-        Configuration.browser = resolveBrowser();
-        Configuration.browserSize = resolveBrowserSize();
-        Configuration.browserVersion = resolveBrowserVersion();
-
         if (isRemote) {
-            configureRemote();
+            Configuration.baseUrl = System.getProperty("baseUrl", "https://efremov.gold/");
+            Configuration.browserSize = System.getProperty("browserSize", "1240x1832");
+            Configuration.browser = System.getProperty("browser", "chrome");
+            Configuration.browserVersion = System.getProperty("browserVersion");
+
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+
+        } else {
+            if (environment.equals("remote")) {
+                Configuration.baseUrl = configData.getBaseUrl();
+                Configuration.browser = configData.getBrowser();
+                Configuration.browserSize = configData.getBrowserSize();
+                Configuration.browserVersion = configData.getBrowserVersion();
+
+
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                        "enableVNC", true,
+                        "enableVideo", true
+                ));
+                Configuration.browserCapabilities = capabilities;
+            }
+            Configuration.baseUrl = configData.getBaseUrl();
+            Configuration.browser = configData.getBrowser();
+            Configuration.browserSize = configData.getBrowserSize();
+            Configuration.browserVersion = configData.getBrowserVersion();
         }
-    }
-
-    private void configureRemote() {
-        Configuration.remote = configData.remoteUrl();
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-        Configuration.browserCapabilities = capabilities;
-    }
-
-
-    private String resolveBaseUrl() {
-        return System.getProperty("baseUrl", configData.getBaseUrl());
-    }
-
-    private String resolveBrowser() {
-        return System.getProperty("browser", configData.getBrowser());
-    }
-
-    private String resolveBrowserSize() {
-        return System.getProperty("browserSize", configData.getBrowserSize());
-    }
-
-    private String resolveBrowserVersion() {
-        return System.getProperty("browserVersion", configData.getBrowserVersion());
     }
 }
