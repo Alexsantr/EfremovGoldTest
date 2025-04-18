@@ -96,9 +96,8 @@ public class EfremovGoldApiTests extends TestBaseApi {
     void authUnsuccessfulClent() {
         AuthErrorResponseModel response = authApiSteps.authUnsuccessfulClent("ASDASD@MAIL.RT");
         System.out.println(response);
-        assertThat(response.code,equalTo("P_USERS_0002"));
-        assertThat(response.message,equalTo("Пользователя с таким e-mail не существует"));
-
+        assertThat(response.code, equalTo("P_USERS_0002"));
+        assertThat(response.message, equalTo("Пользователя с таким e-mail не существует"));
 
     }
 }
