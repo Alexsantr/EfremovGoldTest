@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 public class CatalogSteps {
 
 
-    private static final String COMPARE_ENDPOINT = "/api/compare-products/v1";
+    private static final String COMPARE_ENDPOINT = "/compare-products/v1";
 
     @Step("Получить список продуктов для сравнения")
     public List<ProductResponseModel> getProductsForComparison(int productId) {

@@ -28,7 +28,7 @@ public class BasketSteps {
         requestBody.setGroups(List.of(group));
         requestBody.setChange(true);
 
-        BasketResponseModel responseModel = given(requestSpec).body(requestBody).when().post("api/basket/v1/products").then().extract().as(BasketResponseModel.class);
+        BasketResponseModel responseModel = given(requestSpec).body(requestBody).when().post("/basket/v1/products").then().extract().as(BasketResponseModel.class);
 
         RemoveFromBasketRequest removeFromBasketRequest = new RemoveFromBasketRequest();
         removeFromBasketRequest.setBasket(cartToken);
@@ -48,7 +48,7 @@ public class BasketSteps {
         requestBody.setGroups(Collections.singletonList(group));
         requestBody.setChange(true);
 
-        return given(requestSpec).body(requestBody).when().post("/api/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
+        return given(requestSpec).body(requestBody).when().post("/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
 
 
     }
@@ -56,7 +56,7 @@ public class BasketSteps {
 
     @Step("Удалить товары из корзины")
     public BasketResponseModel removeProductsFromCart(RemoveFromBasketRequest removeFromBasketRequest) {
-        return given(requestSpec).body(removeFromBasketRequest).when().delete("api/basket/v1/products").then().extract().as(BasketResponseModel.class);
+        return given(requestSpec).body(removeFromBasketRequest).when().delete("/basket/v1/products").then().extract().as(BasketResponseModel.class);
 
     }
 
@@ -76,6 +76,6 @@ public class BasketSteps {
         requestBody.setGroups(groups);
         requestBody.setChange(true);
 
-        return given(requestSpec).body(requestBody).when().post("/api/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
+        return given(requestSpec).body(requestBody).when().post("/basket/v1/products").then().spec(statusCode200Spec).extract().as(BasketResponseModel.class);
     }
 }

@@ -19,7 +19,7 @@ public class AuthApiSteps {
         return given(requestSpec)
                 .body(requestBody)
                 .when()
-                .post("api/users/v1/password/send-temp")
+                .post("/users/v1/password/send-temp")
                 .then()
                 .spec(statusCode404Spec)
                 .extract()

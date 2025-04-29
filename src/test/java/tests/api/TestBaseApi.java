@@ -8,6 +8,7 @@ public class TestBaseApi {
     @BeforeAll
     static void configParams() {
 
-        RestAssured.basePath = "https://efremov.gold/";
+        RestAssured.baseURI = "https://efremov.gold/";
+        RestAssured.basePath ="/api";
     }
 }
