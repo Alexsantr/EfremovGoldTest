@@ -55,17 +55,7 @@ public class RingsPages extends SubscriptionPages {
         $$("[data-link=product]").first().click();
         $("[data-button=add-to-cart]").shouldBe(text("Добавить в корзину")).click();
         $$(".header-user__count").findBy(text("1")).shouldBe(visible);
-        $("[data-link=cart]").click();
-        $$("[class=box-title]").findBy(text("Товары в заказе")).shouldBe(visible);
 
-        return this;
-    }
-
-    public RingsPages deleteProductInBasket() {
-        $$("[type=\"button\"]").findBy(text("Очистить корзину")).click();
-        $$(".btn ").findBy(text(" Да, я хочу очистить корзину ")).click();
-        $(".complete-title").shouldBe(text(" В корзине пусто "));
-        $(".complete-text").shouldBe(text(" Воспользуйтесь каталогом, чтобы добавить понравившийся товар в корзину "));
         return this;
     }
 

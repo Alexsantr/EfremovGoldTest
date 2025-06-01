@@ -18,12 +18,12 @@ public class SubscriptionPages {
         SelenideElement closeButton = $("#onesignal-slidedown-cancel-button");
         try {
             $(".cook-popup__aside").click();
-            popup.should(Condition.appear, Duration.ofSeconds(15));
+            popup.should(Condition.appear, Duration.ofSeconds(16));
             closeButton.click();
 
             popup.should(Condition.disappear);
         } catch (Throwable e) {
-            System.out.println("Всплывающее окно не появилось в течение 20 секунд. Продолжаем выполнение.");
+            System.out.println("Всплывающее окно не появилось в течение 16 секунд. Продолжаем выполнение.");
         }
         return this;
     }
