@@ -48,14 +48,26 @@ public class BraceletsPages {
         return this;
     }
 
-    @Step("Проверка работы сортировки")
-    public BraceletsPages checkFiltersPage() {
+    @Step("Проверка работы фильтра")
+    public BraceletsPages checkFiltersPage(int size) {
+
+        $(".filter-button").click();
+        $$(".balloon").shouldHave(sizeLessThan(size));
+
+        return this;
+    }
+
+    @Step("Установка фильтра 'Тип изделия'")
+    public BraceletsPages choiceFiltersPageBracelet() {
 
         $$(".filter-item__list a").findBy(text("Браслет")).click();
-        $$(".filter-item__list div.checkbox").findBy(text("Efremov")).click();
-        $(".filter-button").click();
-        $$(".balloon").shouldHave(sizeLessThan(4));
+        return this;
+    }
 
+    @Step("Установка фильтра'Бренд'")
+    public BraceletsPages choiceFiltersPageBrand() {
+
+        $$(".filter-item__list div.checkbox").findBy(text("Efremov")).click();
         return this;
     }
 

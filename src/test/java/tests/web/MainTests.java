@@ -54,6 +54,8 @@ public class MainTests extends TestBase {
         mainPages
                 .openMainPage()
                 .openCatallogPage()
-                .specialSectionsShouldHaveIcons();
+                .specialSectionsShouldHaveIconStock()
+                .specialSectionsShouldHaveIconGarniture()
+                .specialSectionsShouldHaveIconNovelties();
     }
 }

@@ -36,7 +36,10 @@ public class BraceletsTests extends TestBase {
     @DisplayName("Проверка работы фильтра")
     void checkFiltersPage() {
 
-        braceletsPages.openPage().checkFiltersPage();
+        braceletsPages.openPage()
+                .choiceFiltersPageBracelet()
+                .choiceFiltersPageBrand()
+                .checkFiltersPage(4);
 
     }
 }

@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPages {
-    SubscriptionPages subscriptionPages =new SubscriptionPages();
+    SubscriptionPages subscriptionPages = new SubscriptionPages();
 
     @Step("Открыть главную страницу Efremov")
     public MainPages openMainPage() {
@@ -45,11 +45,23 @@ public class MainPages {
         return this;
     }
 
-    @Step("Проверка отображения иконок у спец разделов в каталоге")
-    public MainPages specialSectionsShouldHaveIcons() {
+    @Step("Проверка отображения иконок у спец разделов в каталоге 'garniture'")
+    public MainPages specialSectionsShouldHaveIconGarniture() {
 
         $(".garniture").shouldBe(visible);
+        return this;
+    }
+
+    @Step("Проверка отображения иконок у спец разделов в каталоге 'novelties'")
+    public MainPages specialSectionsShouldHaveIconNovelties() {
+
         $(".novelties").shouldBe(visible);
+        return this;
+    }
+
+    @Step("Проверка отображения иконок у спец разделов в каталоге 'stock'")
+    public MainPages specialSectionsShouldHaveIconStock() {
+
         $(".stock").shouldBe(visible);
         return this;
     }

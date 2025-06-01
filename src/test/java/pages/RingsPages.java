@@ -28,24 +28,58 @@ public class RingsPages extends SubscriptionPages {
     }
 
     @Step("Проверка работы сортировки")
-    public RingsPages checkSortingPage() {
+    public RingsPages checkSortingPagePriceAscending() {
         $(".catalog-navigation").click();
         $$(".sort-popup__item").findBy(text("По возрастанию цены")).click();
+        return this;
+    }
+
+    @Step("Проверка работы сортировки")
+    public RingsPages checkSortingPagePriceDescending() {
         $(".sort-title").click();
         $$(".sort-popup__item").findBy(text("По убыванию цены")).click();
+        return this;
+    }
+
+    @Step("Проверка работы сортировки")
+    public RingsPages checkSortingPagePopular() {
         $(".sort-title").click();
         $$(".sort-popup__item").findBy(text("По популярности")).click();
         return this;
     }
 
     @Step("Проверка работы фильтра ")
-    public RingsPages checkFiltersPage() {
+    public RingsPages checkFiltersPage(int size) {
+        $("[class=filter-button]").click();
+        $$(".balloon").shouldHave(sizeLessThan(size));
+
+        return this;
+    }
+
+    @Step("Установка фильтра'Тип изделия'")
+    public RingsPages choiceFiltersProductType() {
 
         $$(".filter-item__list a").findBy(text("Кольцо")).click();
+
+
+        return this;
+    }
+
+    @Step("Установка фильтра'Бренд'")
+    public RingsPages choiceFiltersBrand() {
+
         $$(".filter-item__list div.checkbox").findBy(text("Efremov")).click();
+
+
+        return this;
+    }
+
+    @Step("Установка фильтра'для кого'")
+    public RingsPages choiceFiltersFor() {
+
+
         $$(".filter-item__list div.checkbox").findBy(text("Детей")).click();
-        $("[class=filter-button]").click();
-        $$(".balloon").shouldHave(sizeLessThan(5));
+
 
         return this;
     }

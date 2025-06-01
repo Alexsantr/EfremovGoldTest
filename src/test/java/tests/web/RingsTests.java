@@ -16,7 +16,8 @@ public class RingsTests extends TestBase {
     @Story("Проверка страницы каталога")
     @DisplayName("Проверка отображения заголовка страницы каталога колец")
     void checkMainPageTitle() {
-        ringsPages.openPage().checkTittlePage();
+        ringsPages.openPage()
+                .checkTittlePage();
 
     }
 
@@ -24,7 +25,8 @@ public class RingsTests extends TestBase {
     @Story("Проверка страницы каталога")
     @DisplayName("Проверка отображения заголовка страницы каталога колец")
     void checkaMainPageTitle() {
-        ringsPages.openPage().closeSubscriptionPopupIfPresent();
+        ringsPages.openPage()
+                .closeSubscriptionPopupIfPresent();
 
     }
 
@@ -32,7 +34,10 @@ public class RingsTests extends TestBase {
     @Story("Функциональность сортировки")
     @DisplayName("Проверка работы сортировки товаров в каталоге колец")
     void checkSortingPage() {
-        ringsPages.openPage().checkSortingPage();
+        ringsPages.openPage()
+                .checkSortingPagePriceAscending()
+                .checkSortingPagePriceDescending()
+                .checkSortingPagePopular();
 
     }
 
@@ -40,14 +45,19 @@ public class RingsTests extends TestBase {
     @Story("Функциональность фильтрации")
     @DisplayName("Проверка работы фильтров в каталоге колец")
     void checkFiltersPage() {
-        ringsPages.openPage().checkFiltersPage();
+        ringsPages.openPage()
+                .choiceFiltersProductType()
+                .choiceFiltersBrand()
+                .choiceFiltersFor()
+                .checkFiltersPage(5);
     }
 
     @Test
     @Story("Функциональность добавления товара в корзину")
     @DisplayName("Проверка добавления товара в корзину")
     void addProduct() {
-        ringsPages.openPage().addProduct();
+        ringsPages.openPage()
+                .addProduct();
         basketPage
                 .checkRroductInBasket();
     }
