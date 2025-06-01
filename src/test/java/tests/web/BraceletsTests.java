@@ -26,7 +26,8 @@ public class BraceletsTests extends TestBase {
     @DisplayName("Проверка работы сортировки")
     void checkSortingPage() {
 
-        braceletsPages.openPage().checkSortingPage();
+        braceletsPages.openPage().checkSortingPagePriceAscending()
+                .checkSortingPagePriceDescending().checkSortingPagePopular();
 
     }
 

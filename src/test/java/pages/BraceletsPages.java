@@ -28,11 +28,21 @@ public class BraceletsPages {
     }
 
     @Step("Проверка работы сортировки")
-    public BraceletsPages checkSortingPage() {
+    public BraceletsPages checkSortingPagePriceAscending() {
         $(".sort").click();
         $$(".sort-popup__item").findBy(text("По возрастанию цены")).click();
+        return this;
+    }
+
+    @Step("Проверка работы сортировки")
+    public BraceletsPages checkSortingPagePriceDescending() {
         $(".sort-title").click();
         $$(".sort-popup__item").findBy(text("По убыванию цены")).click();
+        return this;
+    }
+
+    @Step("Проверка работы сортировки")
+    public BraceletsPages checkSortingPagePopular() {
         $(".sort-title").click();
         $$(".sort-popup__item").findBy(text("По популярности")).click();
         return this;
